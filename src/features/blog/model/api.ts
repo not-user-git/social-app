@@ -3,7 +3,7 @@ import { axiosPrivate } from '@/shared/lib/axios/axios-private'
 import { ENDPOINTS } from '@/shared/api/endpoints'
 import type { Blogs, Blog, Like, Comments, Comment } from './types'
 
-export const getBlogs = async (): Promise<Blogs> => {
+export const getBlogs = async () => {
   const res = await axiosPublic.get<Blogs>(ENDPOINTS.BLOG.ALL)
   return res.data
 }
@@ -18,38 +18,7 @@ export const getBlog = async (id: string) => {
   return res.data
 }
 
-export const getComments = async ({
-  blogId,
-  limit,
-  page
-}: Omit<Comments, 'from'>) => {
-  const res = await axiosPrivate.get<Comment[]>(ENDPOINTS.COMMENT.ALL, {
-    params: { blogId, limit, page }
-  })
-  return res.data
-}
-
-export const postLike = async ({ blogId, userId }: Like) => {
-  const res = await axiosPrivate.post(ENDPOINTS.LIKE, { blogId, userId })
-  return res.data
-}
-
-export const postComment = async ({
-  blogId,
-  from,
-  text,
-  to
-}: Pick<Comment, 'blogId' | 'from' | 'text' | 'to'>) => {
-  const res = await axiosPrivate.post(ENDPOINTS.COMMENT.CREATE, {
-    blogId,
-    from,
-    text,
-    to
-  })
-  return res.data
-}
-
-export const postBlog = async (formData: FormData) => {
+export const createBlog = async (formData: FormData) => {
   const res = await axiosPrivate.post(ENDPOINTS.BLOG.CREATE, formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
@@ -72,7 +41,33 @@ export const deleteBlog = async (id: string) => {
   return res.data
 }
 
-export const editedComment = async ({
+export const getComments = async ({
+  blogId,
+  limit,
+  page
+}: Omit<Comments, 'from'>) => {
+  const res = await axiosPrivate.get<Comment[]>(ENDPOINTS.COMMENT.ALL, {
+    params: { blogId, limit, page }
+  })
+  return res.data
+}
+
+export const createComment = async ({
+  blogId,
+  from,
+  text,
+  to
+}: Pick<Comment, 'blogId' | 'from' | 'text' | 'to'>) => {
+  const res = await axiosPrivate.post(ENDPOINTS.COMMENT.CREATE, {
+    blogId,
+    from,
+    text,
+    to
+  })
+  return res.data
+}
+
+export const editComment = async ({
   _id,
   blogId,
   text
@@ -87,5 +82,10 @@ export const editedComment = async ({
 
 export const deleteComment = async (id: string | null) => {
   const res = await axiosPrivate.delete(ENDPOINTS.COMMENT.DELETE(id))
+  return res.data
+}
+
+export const like = async ({ blogId, userId }: Like) => {
+  const res = await axiosPrivate.post(ENDPOINTS.LIKE, { blogId, userId })
   return res.data
 }

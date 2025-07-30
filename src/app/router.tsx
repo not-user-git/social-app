@@ -1,20 +1,22 @@
 import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router'
-import { ROUTES } from '@/shared/model/routes'
-import { ProtectedRouteMiddleware } from '@/shared/middlewares/protected-route-middleware'
-import { GuestRouteMiddleware } from '@/shared/middlewares/guest-route-middleware'
-import { App } from './app'
 
-const BlogsPage = lazy(() => import('@/features/blog/blogs.page'))
-const BlogPage = lazy(() => import('@/features/blog/blog.page'))
-const MyBlogsPage = lazy(() => import('@/features/blog/my-blogs.page'))
-const RegisterPage = lazy(() => import('@/features/auth/register.page'))
-const LoginPage = lazy(() => import('@/features/auth/login.page'))
-const AccountPage = lazy(() => import('@/features/auth/account.page'))
+import { ROUTES } from '@/shared/model/routes'
+
+import { AppInitializer } from './app-initializer'
+import { ProtectedRoute } from './compose/protected-route'
+import { GuestRoute } from './compose/guest-route'
+
+const BlogsPage = lazy(() => import('@/features/blog/pages/blogs.page'))
+const BlogPage = lazy(() => import('@/features/blog/pages/blog.page'))
+const MyBlogsPage = lazy(() => import('@/features/blog/pages/my-blogs.page'))
+const RegisterPage = lazy(() => import('@/features/auth/pages/register.page'))
+const LoginPage = lazy(() => import('@/features/auth/pages/login.page'))
+const AccountPage = lazy(() => import('@/features/auth/pages/account.page'))
 
 export const router = createBrowserRouter([
   {
-    element: <App />,
+    element: <AppInitializer />,
     children: [
       {
         index: true,
@@ -23,25 +25,25 @@ export const router = createBrowserRouter([
       {
         path: ROUTES.BLOG,
         element: (
-          <ProtectedRouteMiddleware>
+          <ProtectedRoute>
             <BlogPage />
-          </ProtectedRouteMiddleware>
+          </ProtectedRoute>
         )
       },
       {
         path: ROUTES.MY,
         element: (
-          <ProtectedRouteMiddleware>
+          <ProtectedRoute>
             <MyBlogsPage />
-          </ProtectedRouteMiddleware>
+          </ProtectedRoute>
         )
       },
       {
         path: ROUTES.ACCOUNT,
         element: (
-          <ProtectedRouteMiddleware>
+          <ProtectedRoute>
             <AccountPage />
-          </ProtectedRouteMiddleware>
+          </ProtectedRoute>
         )
       }
     ]
@@ -49,17 +51,17 @@ export const router = createBrowserRouter([
   {
     path: ROUTES.REGISTER,
     element: (
-      <GuestRouteMiddleware>
+      <GuestRoute>
         <RegisterPage />
-      </GuestRouteMiddleware>
+      </GuestRoute>
     )
   },
   {
     path: ROUTES.LOGIN,
     element: (
-      <GuestRouteMiddleware>
+      <GuestRoute>
         <LoginPage />
-      </GuestRouteMiddleware>
+      </GuestRoute>
     )
   }
 ])

@@ -1,0 +1,35 @@
+import type { ReactNode } from 'react'
+import { useEffect } from 'react'
+import { useMe } from '@/app/model/hooks/use-me'
+import { useUser } from '@/app/model/auth.store'
+import { MainLoader } from '@/shared/ui/main-loader'
+
+export const AuthLayout = ({ children }: { children: ReactNode }) => {
+  const { data, isSuccess, isError, isFetching } = useMe()
+  const setUser = useUser(state => state.setUser)
+  const removeUser = useUser(state => state.removeUser)
+  const setIsAuth = useUser(state => state.setIsAuth)
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      setUser(data.data)
+      setIsAuth(true)
+    } else if (isError) {
+      removeUser()
+      setIsAuth(false)
+    }
+  }, [isSuccess, isError])
+
+  if (isFetching)
+    return (
+      <div className='w-full h-dvh flex items-center justify-center'>
+        <MainLoader />
+      </div>
+    )
+
+  return (
+    <main className='w-full min-h-dvh px-4 sm:px-0 bg-white flex items-center sm:items-start py-5 sm:py-20 justify-center'>
+      {children}
+    </main>
+  )
+}

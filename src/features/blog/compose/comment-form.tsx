@@ -3,8 +3,8 @@ import { useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { SendHorizonal, X } from 'lucide-react'
 import { BlogInput } from '../ui/blog-input'
-import { useComment, useCommentEdit } from '../model/model'
-import { useCommentStore } from '@/shared/stores/comments.store'
+import { useCreateComment, useEditComment } from '../model'
+import { useCommentStore } from '@/features/blog/model/comment.store'
 import { twMerge } from 'tailwind-merge'
 
 export const CommentForm = ({
@@ -17,8 +17,8 @@ export const CommentForm = ({
   const isEditMode = useCommentStore(state => state.isEditMode)
   const cancelEditMode = useCommentStore(state => state.cancelEditMode)
 
-  const { mutate: comment } = useComment(blogId ?? '')
-  const { mutate: commentEdit } = useCommentEdit(blogId ?? '')
+  const { mutate: comment } = useCreateComment(blogId ?? '')
+  const { mutate: commentEdit } = useEditComment(blogId ?? '')
 
   const { handleSubmit, control, reset, setFocus } = useForm({
     mode: 'onChange',

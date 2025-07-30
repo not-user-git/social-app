@@ -16,6 +16,16 @@
   --color-save: #fbca00;
 }
 
+@layer utilities {
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+}
+
 #root {
   @apply bg-back;
 }
@@ -23,28 +33,38 @@
 .custom-container {
   width: 100%;
   margin: 0 auto;
-  @media (width >=40rem
 
- /* 640px */) {
-    max-width: 40rem /* 640px */;
+  @media (width >=40rem) {
+    max-width: 40rem
+      /* 640px */
+    ;
   }
 
   @media (width >=48rem
 
- /* 768px */) {
-    max-width: 48rem /* 768px */;
+    /* 768px */
+  ) {
+    max-width: 48rem
+      /* 768px */
+    ;
   }
 
   @media (width >=64rem
 
- /* 1024px */) {
-    max-width: 64rem /* 1024px */;
+    /* 1024px */
+  ) {
+    max-width: 64rem
+      /* 1024px */
+    ;
   }
 
   @media (width >=70rem
 
- /* 1280px */) {
-    max-width: 70rem /* 1280px */;
+    /* 1280px */
+  ) {
+    max-width: 70rem
+      /* 1280px */
+    ;
   }
 }
 

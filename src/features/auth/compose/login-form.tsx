@@ -3,7 +3,7 @@ import type { FieldErrors } from 'react-hook-form'
 import { useForm, Controller } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { Input } from '@/features/auth/ui/input'
-import { useLogin } from '../model/model'
+import { useLogin } from '../model'
 
 const onError = async (errors: FieldErrors<UserLogin>) => {
   const errorMessages = Object.values(errors).map(

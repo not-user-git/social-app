@@ -2,8 +2,8 @@ import type { User } from '@/shared/model/types'
 import { useForm, Controller } from 'react-hook-form'
 import { Input } from '@/features/auth/ui/input'
 import { PhoneInput } from '@/features/auth/ui/phone-input'
-import { useUser } from '@/shared/stores/auth.store'
-import { useEdit } from '../model/model'
+import { useUser } from '@/app/model/auth.store'
+import { useEdit } from '../model'
 import { useEffect } from 'react'
 
 export const AccountForm = () => {

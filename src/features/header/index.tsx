@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 import { ROUTES } from '@/shared/model/routes'
-import { useUser } from '@/shared/stores/auth.store'
-import { User } from './user'
+import { useUser } from '@/app/model/auth.store'
+import { User } from './ui/header-user'
 import { Button } from '@/shared/ui/button'
 
 export const Header = () => {
@@ -13,7 +13,7 @@ export const Header = () => {
         <Link to={ROUTES.HOME}>
           <section className='relative flex items-center gap-2 sm:gap-3'>
             <img
-              src='/app-icon.svg'
+              src='/icons/app-icon.svg'
               alt='App icon'
               className='size-8 md:size-10'
             />

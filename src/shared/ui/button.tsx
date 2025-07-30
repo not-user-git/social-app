@@ -32,22 +32,25 @@ export const Button = ({
         <button
           onClick={onclick}
           className={twMerge(
-            ' border-1 rounded-md cursor-pointer not-hover:active:*:text-white not-hover:active:*:underline hover:*:text-white hover:*:underline select-none',
+            ' border-1 rounded-md cursor-pointer transition-colors duration-177 not-hover:active:*:text-white not-hover:active:*:underline hover:*:text-white hover:*:underline select-none',
+
             mobileMode
               ? 'p-4 rounded-full'
               : full
                 ? 'w-full p-2.5'
                 : 'px-4 py-1.5',
+
             variant === 'first'
-              ? 'not-hover:active:bg-primary  hover:bg-primary border-primary'
+              ? 'hover:bg-primary border-primary'
               : '*:text-neutral-500 not-hover:active:bg-primary/10 not-hover:active:*:text-primary hover:bg-primary/10 hover:*:text-primary border-transparent',
+
             active &&
-              'bg-beta/10 text-beta *:text-beta *:underline hover:bg-beta/10 hover:*:text-beta'
+              'bg-beta/10 text-beta *:text-beta *:underline hover:bg-beta/10 hover:*:text-beta not-hover:active:*:text-beta not-hover:active:bg-beta/10'
           )}
         >
           <span
             className={twMerge(
-              'text-sm sm:text-base leading-none text-primary font-semibold',
+              'text-sm sm:text-base leading-none transition-colors duration-177 text-primary font-semibold',
               Icon && 'flex items-center gap-4 font-medium'
             )}
           >
@@ -61,7 +64,7 @@ export const Button = ({
     <button
       onClick={onclick}
       className={twMerge(
-        ' border-1 rounded-md cursor-pointer not-hover:active:*:text-white not-hover:active:*:underline hover:*:text-white hover:*:underline select-none',
+        ' border-1 rounded-md cursor-pointer transition-colors duration-177 not-hover:active:*:text-white not-hover:active:*:underline hover:*:text-white hover:*:underline select-none',
         full ? 'w-full p-2.5' : 'px-4 py-5',
         variant === 'first'
           ? 'not-hover:active:bg-primary  hover:bg-primary border-primary'
@@ -70,7 +73,7 @@ export const Button = ({
     >
       <span
         className={twMerge(
-          'text-sm sm:text-base leading-none text-primary font-semibold',
+          'text-sm sm:text-base leading-none transition-colors duration-177 text-primary font-semibold',
           Icon && 'flex items-center gap-4 font-medium'
         )}
       >

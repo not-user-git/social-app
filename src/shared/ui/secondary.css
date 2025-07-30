@@ -1,0 +1,23 @@
+.ripple-circle {
+  cx: 20;
+  cy: 20;
+  r: 1;
+  stroke-width: 2;
+  animation: ripple 1.8s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+}
+
+.ripple-circle.delay {
+  animation-delay: 0.9s;
+}
+
+@keyframes ripple {
+  0% {
+    r: 1;
+    stroke-opacity: 1;
+  }
+
+  100% {
+    r: 20;
+    stroke-opacity: 0;
+  }
+}

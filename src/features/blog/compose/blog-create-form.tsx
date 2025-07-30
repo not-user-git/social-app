@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { ImageOff } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'
-import { useBlogEdit, useBlogPost } from '../model/model'
+import { useCreateBlog, useEditBlog } from '../model'
 
 interface Props {
   _id?: string
@@ -20,8 +20,8 @@ export const BlogCreateForm = ({
   text,
   prevImage = ''
 }: Props) => {
-  const { mutate: postBlog } = useBlogPost()
-  const { mutate: editBlog } = useBlogEdit()
+  const { mutate: postBlog } = useCreateBlog()
+  const { mutate: editBlog } = useEditBlog()
   const {
     control,
     register,
@@ -109,15 +109,15 @@ export const BlogCreateForm = ({
           {...register('text', {
             required: 'Текст обязателен',
             maxLength: {
-              value: 300,
-              message: 'Текст максимум может иметь 300 символов'
+              value: 500,
+              message: 'Текст максимум может иметь 500 символов'
             },
             minLength: {
               value: 3,
               message: 'Текст минимум может иметь 3 символов'
             }
           })}
-          maxLength={120}
+          maxLength={500}
           id='text'
           name='text'
           autoComplete='off'

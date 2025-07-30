@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { Pen } from 'lucide-react'
 import { BlogCommentMenu } from '../ui/blog-comment-menu'
-import { useCommentDelete } from '../model/model'
+import { useDeleteComment } from '../model'
 import { Avatar } from '@/shared/ui/avatar'
 import { toDefaultDate } from '@/shared/lib/helpers/to-default-date'
-import { useCommentStore } from '@/shared/stores/comments.store'
+import { useCommentStore } from '@/features/blog/model/comment.store'
 
 interface Props {
   my: boolean
@@ -24,7 +24,7 @@ export const BlogComment = ({
   id,
   blogId
 }: Props) => {
-  const { mutate: deleteComment } = useCommentDelete(blogId ?? '')
+  const { mutate: deleteComment } = useDeleteComment(blogId ?? '')
   const setId = useCommentStore(state => state.setId)
   const editMode = useCommentStore(state => state.editMode)
   const cancelEditMode = useCommentStore(state => state.cancelEditMode)

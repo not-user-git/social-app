@@ -5,7 +5,7 @@ import { PhoneInput } from '@/features/auth/ui/phone-input'
 import { FileInput } from '../ui/file-input'
 import { Input } from '@/features/auth/ui/input'
 import { ImageOff } from 'lucide-react'
-import { useRegister } from '../model/model'
+import { useRegister } from '../model'
 
 const onError = async (errors: FieldErrors<User>) => {
   const errorMessages = Object.values(errors).map(
