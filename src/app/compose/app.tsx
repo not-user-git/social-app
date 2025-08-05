@@ -5,6 +5,7 @@ import { useDeviceInfo } from '@/shared/hooks/use-device-info'
 
 const App = () => {
   const { isMobile } = useDeviceInfo()
+
   return (
     <main className='w-full h-dvh flex flex-col md:gap-3 overflow-hidden min-h-0'>
       <Header />

@@ -4,7 +4,7 @@ import { Pen } from 'lucide-react'
 import { BlogCommentMenu } from '../ui/blog-comment-menu'
 import { useDeleteComment } from '../model'
 import { Avatar } from '@/shared/ui/avatar'
-import { toDefaultDate } from '@/shared/lib/helpers/to-default-date'
+import { toDefaultDate } from '@/features/blog/model/helpers/to-default-date'
 import { useCommentStore } from '@/features/blog/model/comment.store'
 
 interface Props {

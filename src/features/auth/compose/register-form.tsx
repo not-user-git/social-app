@@ -1,21 +1,16 @@
 import type { User } from '@/shared/model/types'
-import { useForm, Controller, type FieldErrors } from 'react-hook-form'
-import { toast } from 'react-hot-toast'
-import { PhoneInput } from '@/features/auth/ui/phone-input'
-import { FileInput } from '../ui/file-input'
-import { Input } from '@/features/auth/ui/input'
-import { ImageOff } from 'lucide-react'
+import { useForm, Controller } from 'react-hook-form'
 import { useRegister } from '../model'
 
-const onError = async (errors: FieldErrors<User>) => {
-  const errorMessages = Object.values(errors).map(
-    err => err?.message || 'Неизвестная ошибка'
-  )
-  errorMessages.forEach(msg => toast.error(msg))
-}
+import { PhoneInput } from '../ui/phone-input'
+import { Input } from '../ui/input'
+import { FileInput } from '../ui/file-input'
+import { Button } from '../ui/button'
+import { AvatarPreview } from '../ui/avatar-preview'
 
 export const RegisterForm = () => {
   const { mutate: reg } = useRegister()
+
   const {
     reset,
     handleSubmit,
@@ -49,7 +44,7 @@ export const RegisterForm = () => {
   return (
     <form
       className='flex flex-col gap-3'
-      onSubmit={handleSubmit(onSubmit, onError)}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Controller
         name='login'
@@ -214,20 +209,11 @@ export const RegisterForm = () => {
         )}
       />
 
-      <div className='size-18 border-2 border-dashed border-neutral-500/40 flex flex-col items-center justify-center gap-2 overflow-hidden'>
-        {avatarPreview ? (
-          <img src={avatarPreview} alt='Аватарка пользователя' />
-        ) : (
-          <ImageOff className='text-neutral-500/40' />
-        )}
-      </div>
+      <AvatarPreview avatar={avatarPreview} />
 
-      <button
-        type='submit'
-        className='w-full text-white hover:bg-secondary-back/90 bg-secondary-back py-2 cursor-pointer rounded-lg text-sm font-medium'
-      >
+      <Button>
         Зарегистрироваться
-      </button>
+      </Button>
     </form>
   )
 }

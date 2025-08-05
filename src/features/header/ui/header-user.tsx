@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { UserMenu } from './user-menu'
-import { Avatar } from '@/shared/ui/avatar'
-import { ChevronDown } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'
+import { ChevronDown } from 'lucide-react'
+
+import { Avatar } from '@/shared/ui/avatar'
+import { UserMenu } from '../user-menu'
 
 interface Props {
   name: string
@@ -12,6 +13,7 @@ interface Props {
 
 export const User = ({ name, email, avatarUrl }: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
+
   return (
     <section className='relative'>
       <button

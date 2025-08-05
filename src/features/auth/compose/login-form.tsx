@@ -1,19 +1,13 @@
 import type { UserLogin } from '../model/types'
-import type { FieldErrors } from 'react-hook-form'
 import { useForm, Controller } from 'react-hook-form'
-import { toast } from 'react-hot-toast'
-import { Input } from '@/features/auth/ui/input'
 import { useLogin } from '../model'
 
-const onError = async (errors: FieldErrors<UserLogin>) => {
-  const errorMessages = Object.values(errors).map(
-    err => err?.message || 'Неизвестная ошибка'
-  )
-  errorMessages.forEach(msg => toast.error(msg))
-}
+import { Input } from '@/features/auth/ui/input'
+import { Button } from '../ui/button'
 
 export const LoginForm = () => {
   const { mutate: login } = useLogin()
+
   const {
     handleSubmit,
     control,
@@ -35,7 +29,7 @@ export const LoginForm = () => {
   return (
     <form
       className='flex flex-col gap-3'
-      onSubmit={handleSubmit(onSubmit, onError)}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Controller
         name='login'
@@ -98,12 +92,9 @@ export const LoginForm = () => {
         )}
       />
 
-      <button
-        type='submit'
-        className='w-full text-white hover:bg-secondary-back/90 bg-secondary-back py-2 cursor-pointer rounded-lg text-sm font-medium'
-      >
+      <Button>
         Войти
-      </button>
+      </Button>
     </form>
   )
 }

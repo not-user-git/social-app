@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 
-import { useUser } from '@/app/model/auth.store'
+import { useUser } from '@/shared/stores/auth.store'
 import { ROUTES } from '@/shared/model/routes'
 
 import { edit } from '../api'

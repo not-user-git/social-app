@@ -14,7 +14,6 @@ export const PhoneInput = ({ label, field }: Props) => {
         {label}
       </label>
       <IMaskInput
-        required
         id='tel'
         type='tel'
         autoComplete='off'

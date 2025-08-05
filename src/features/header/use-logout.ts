@@ -2,7 +2,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 import { ROUTES } from '@/shared/model/routes'
-import { useToken, useUser } from '../auth.store'
+import { useToken, useUser } from '@/shared/stores/auth.store'
 
 export const useLogOut = () => {
   const removeToken = useToken(state => state.removeToken)

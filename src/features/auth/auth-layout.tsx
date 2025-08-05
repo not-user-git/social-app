@@ -1,11 +1,14 @@
 import type { ReactNode } from 'react'
 import { useEffect } from 'react'
-import { useMe } from '@/app/model/hooks/use-me'
-import { useUser } from '@/app/model/auth.store'
+
+import { useMe } from '@/shared/hooks/use-me'
+import { useUser } from '@/shared/stores/auth.store'
+
 import { MainLoader } from '@/shared/ui/main-loader'
 
 export const AuthLayout = ({ children }: { children: ReactNode }) => {
   const { data, isSuccess, isError, isFetching } = useMe()
+
   const setUser = useUser(state => state.setUser)
   const removeUser = useUser(state => state.removeUser)
   const setIsAuth = useUser(state => state.setIsAuth)

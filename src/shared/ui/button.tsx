@@ -3,7 +3,7 @@ import type { MouseEventHandler } from 'react'
 import { Link } from 'react-router'
 import { twMerge } from 'tailwind-merge'
 
-interface Props {
+interface ButtonProps {
   variant: 'first' | 'second'
   mode: 'button' | 'link'
   path?: string
@@ -25,7 +25,7 @@ export const Button = ({
   active,
   children,
   onclick
-}: Props) => {
+}: ButtonProps) => {
   if (mode === 'link')
     return (
       <Link to={path}>
@@ -45,7 +45,7 @@ export const Button = ({
               : '*:text-neutral-500 not-hover:active:bg-primary/10 not-hover:active:*:text-primary hover:bg-primary/10 hover:*:text-primary border-transparent',
 
             active &&
-              'bg-beta/10 text-beta *:text-beta *:underline hover:bg-beta/10 hover:*:text-beta not-hover:active:*:text-beta not-hover:active:bg-beta/10'
+            'bg-beta/10 text-beta *:text-beta *:underline hover:bg-beta/10 hover:*:text-beta not-hover:active:*:text-beta not-hover:active:bg-beta/10'
           )}
         >
           <span
@@ -60,6 +60,7 @@ export const Button = ({
         </button>
       </Link>
     )
+
   return (
     <button
       onClick={onclick}

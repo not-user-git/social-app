@@ -1,12 +1,15 @@
 import { Link } from 'react-router'
+
 import { ROUTES } from '@/shared/model/routes'
-import { useUser } from '@/app/model/auth.store'
-import { User } from './ui/header-user'
+import { useUser } from '@/shared/stores/auth.store'
+
 import { Button } from '@/shared/ui/button'
+import { User } from './ui/header-user'
 
 export const Header = () => {
   const isAuth = useUser(state => state.isAuth)
   const user = useUser(state => state.user)
+
   return (
     <header className='w-full py-3 px-3 md:px-3 flex items-center justify-center bg-white border-b-1 border-neutral-200 select-none'>
       <div className='custom-container flex justify-between items-center'>

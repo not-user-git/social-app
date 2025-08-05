@@ -28,6 +28,7 @@ export const Input = ({
       <label className='text-sm font-semibold text-neutral-800' htmlFor={type}>
         {label}
       </label>
+
       <input
         {...field}
         id={type}

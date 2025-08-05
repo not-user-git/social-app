@@ -1,4 +1,4 @@
-import { useUser } from '@/app/model/auth.store'
+import { useUser } from '@/shared/stores/auth.store'
 import { prependUrl } from '@/shared/lib/helpers/prepend.helper'
 
 import { BlogCard } from './blog-card'

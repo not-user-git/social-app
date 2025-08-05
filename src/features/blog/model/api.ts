@@ -1,6 +1,6 @@
 import { axiosPublic } from '@/shared/lib/axios/axios-public'
 import { axiosPrivate } from '@/shared/lib/axios/axios-private'
-import { ENDPOINTS } from '@/shared/api/endpoints'
+import { ENDPOINTS } from '@/shared/model/endpoints'
 import type { Blogs, Blog, Like, Comments, Comment } from './types'
 
 export const getBlogs = async () => {

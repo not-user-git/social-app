@@ -12,8 +12,8 @@ const MyBlogsPage = () => {
   const openModal = useModal(state => state.openModal)
 
   return (
-    <div className='w-full flex flex-col'>
-      <section className='flex justify-between px-4.5 py-4'>
+    <div className='w-full flex-1 flex flex-col'>
+      <section className='flex justify-between pl-4.5 py-4'>
         <h3 className='text-xl text-neutral-900 font-semibold leading-normal'>
           Ваши блоги
         </h3>

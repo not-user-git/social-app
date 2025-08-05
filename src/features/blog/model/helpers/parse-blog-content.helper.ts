@@ -1,7 +1,7 @@
-export function parsePostContent(input: string): {
+export const parsePostContent = (input: string): {
   text: string
   hashtags: string[]
-} {
+} => {
   const words = input.trim().split(/\s+/)
 
   const textParts: string[] = []
@@ -9,7 +9,7 @@ export function parsePostContent(input: string): {
 
   for (const word of words) {
     if (word.startsWith('#')) {
-      hashtags.push(word)
+      hashtags.push(word.slice(0, 16))
     } else {
       textParts.push(word)
     }

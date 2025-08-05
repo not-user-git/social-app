@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from 'react'
-import { useLogOut } from '@/app/model/hooks/use-logout'
+import { useLogOut } from '@/features/header/use-logout'
 import { LogOut } from 'lucide-react'
 import { confirmLogout } from '@/shared/lib/toast/confirm-logout'
 

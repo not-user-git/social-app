@@ -4,8 +4,14 @@ import { useEffect } from 'react'
 import { useComments } from '../model'
 import { CommentForm } from '../compose/comment-form'
 import { BlogComment } from '../compose/blog-comment'
-import { useUser } from '@/app/model/auth.store'
+import { useUser } from '@/shared/stores/auth.store'
 import { twMerge } from 'tailwind-merge'
+
+const NotComments = () => {
+  return (
+    <span>Нет комментарий, оставьте первый</span>
+  )
+}
 
 export const BlogCommentsModal = ({
   blogId,
@@ -26,30 +32,29 @@ export const BlogCommentsModal = ({
       <div
         className={twMerge(
           'w-full h-[450px] sm:pr-2 overflow-y-scroll my-3 flex flex-col gap-3 scrollbar-hidden',
-          !!!data?.length && 'items-center justify-center'
+          !data?.length && 'items-center justify-center'
         )}
       >
-        {data?.length ? (
-          data ? (
-            data.map(comment => (
-              <BlogComment
-                key={comment._id}
-                blogId={blogId}
-                id={comment._id}
-                my={userId === comment.from}
-                updated={comment.updatedAt}
-                created={comment.createdAt ? comment.createdAt : ''}
-                text={comment.text}
-              />
+
+        {
+          data?.length
+            ? (data ? (
+              data.map(comment => (
+                <BlogComment
+                  key={comment._id}
+                  blogId={blogId}
+                  id={comment._id}
+                  my={userId === comment.from}
+                  updated={comment.updatedAt}
+                  created={comment.createdAt ? comment.createdAt : ''}
+                  text={comment.text}
+                />
+              ))
+            ) : (
+              <span className='text-neutral-800'>Загрузка...</span>
             ))
-          ) : (
-            <span>Загрузка...</span>
-          )
-        ) : (
-          <span className='text-neutral-800 text-lg'>
-            Оставьте первый комментарий
-          </span>
-        )}
+            : (<NotComments />)
+        }
       </div>
       <CommentForm blogId={blogId} from={from} to={blogId} />
     </section>

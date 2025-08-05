@@ -1,7 +1,7 @@
 import { useEffect, useState, lazy, Suspense } from 'react'
 
-import { useMe } from './model/hooks/use-me'
-import { useUser } from './model/auth.store'
+import { useMe } from '../shared/hooks/use-me'
+import { useUser } from '../shared/stores/auth.store'
 
 import { MainLoader } from '@/shared/ui/main-loader'
 import { SecondaryLoader } from '@/shared/ui/secondary-loader'

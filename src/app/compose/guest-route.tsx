@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { toast } from 'react-hot-toast'
 
-import { useUser } from '@/app/model/auth.store'
+import { useUser } from '@/shared/stores/auth.store'
 import { ROUTES } from '@/shared/model/routes'
 
 export const GuestRoute = ({ children }: { children: ReactNode }) => {

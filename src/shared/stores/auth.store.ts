@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { User } from '@/shared/model/types'
+import type { User } from '../model/types'
 
 interface Token {
   token: string | null
