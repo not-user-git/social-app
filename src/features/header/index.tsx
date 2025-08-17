@@ -16,6 +16,7 @@ export const Header = () => {
         <Link to={ROUTES.HOME}>
           <section className='relative flex items-center gap-2 sm:gap-3'>
             <img
+              draggable={false}
               src='/icons/app-icon.svg'
               alt='App icon'
               className='size-8 md:size-10'

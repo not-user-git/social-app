@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
 
-export const useDocumentTitle = (title: string) => {
+export const useDocumentTitle = (title?: string) => {
   useEffect(() => {
-    document.title = `Voqsy - ${title}`
+    document.title = title ? `${title} - Voqsy` : 'Загрузка - Voqsy'
+    return () => {
+      document.title = 'Voqsy'
+    }
   }, [title])
 }

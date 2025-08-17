@@ -1,5 +1,5 @@
-import { IMaskInput } from 'react-imask'
 import type { ControllerRenderProps } from 'react-hook-form'
+import { IMaskInput } from 'react-imask'
 
 interface Props {
   label: string

@@ -12,7 +12,7 @@ export const Avatar = ({ image, username, me = false }: Props) => {
     <>
       {image ? (
         <span className='size-8 rounded-full overflow-hidden leading-none'>
-          <img src={image} alt={username} />
+          <img draggable={false} src={image} alt={username} />
         </span>
       ) : (
         <span

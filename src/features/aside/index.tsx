@@ -4,15 +4,16 @@ import { Button } from '@/shared/ui/button'
 
 import { links } from './index.data'
 
-export const Aside = ({ isMobile }: { isMobile: boolean }) => {
+export const Aside = ({ isMobileVersion }: { isMobileVersion: boolean }) => {
   const location = useLocation()
 
   return (
-    <aside className={isMobile ? 'basis-0' : 'basis-1/5'}>
+    <aside className={isMobileVersion ? 'basis-0' : 'basis-1/5'}>
       <nav
         className={twMerge(
-          'leading-none',
-          isMobile && 'flex justify-between px-5 py-2 border-t-2 border-neutral-200'
+          'flex flex-col gap-1.5 leading-none',
+          isMobileVersion &&
+            'flex justify-between flex-row px-5 py-2 border-t-2 border-neutral-200'
         )}
       >
         {links.map((link, index) => (
@@ -20,13 +21,13 @@ export const Aside = ({ isMobile }: { isMobile: boolean }) => {
             key={index}
             mode='link'
             path={link.path}
-            full={!isMobile}
-            mobileMode={isMobile}
+            full={!isMobileVersion}
+            mobileMode={isMobileVersion}
             icon={link.icon}
             variant='second'
             active={link.path === location.pathname}
           >
-            {isMobile ? '' : link.text}
+            {link.text}
           </Button>
         ))}
       </nav>

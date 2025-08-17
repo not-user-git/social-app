@@ -1,4 +1,6 @@
-export const parsePostContent = (input: string): {
+export const parsePostContent = (
+  input: string
+): {
   text: string
   hashtags: string[]
 } => {

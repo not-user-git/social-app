@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router'
-import toast from 'react-hot-toast'
 import { twMerge } from 'tailwind-merge'
+import toast from 'react-hot-toast'
 
 import { ROUTES } from '@/shared/model/routes'
 import { useParsedBlogContent } from '@/features/blog/model/hooks/use-parsed-blog-content'
@@ -18,6 +18,7 @@ import { BlogInfo } from '../ui/blog-info'
 import { BlogOption } from '../ui/blog-option'
 import { BlogHashtags } from '../ui/blog-hashtags'
 import { BlogCommentMenu } from '../ui/blog-comment-menu'
+import { CardImage } from '../ui/card-image'
 
 interface Props {
   blogId: string
@@ -46,7 +47,6 @@ export const BlogCard = ({
   likeCount,
   commentCount
 }: Props) => {
-  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false)
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
   const [commCount, setCommCount] = useState<number>(commentCount)
 
@@ -60,20 +60,6 @@ export const BlogCard = ({
 
   const { mutate: like, data } = useLike()
   const { mutate: deleteBlog } = useBlogDelete()
-
-  const blogImageElement = useRef<HTMLImageElement>(null)
-
-  useEffect(() => {
-    const handleLoad = () => {
-      setIsImageLoaded(true);
-    }
-
-    blogImageElement.current?.addEventListener('load', handleLoad)
-
-    return () => {
-      blogImageElement.current?.removeEventListener('load', handleLoad)
-    }
-  }, [blogImage, blogImageElement])
 
   return (
     <section className='w-90 mx-auto mb-3 sm:mb-4 bg-white rounded-lg overflow-hidden transition last:mb-0'>
@@ -122,29 +108,31 @@ export const BlogCard = ({
         )}
       </div>
 
-      <Link to={isAuth ? link : ROUTES.HOME}>
+      {isAuth ? (
+        <Link to={link}>
+          <CardImage image={blogImage} />
 
-        <figure className={`relative h-full max-h-[500px] overflow-hidden ${!isImageLoaded && 'min-h-[300px]'}`}>
-          <img
-            ref={blogImageElement}
-            src={blogImage}
-            onLoad={() => setIsImageLoaded(true)}
-            onError={() => console.error("Ошибка загрузки")}
-            className={`w-full object-cover transition-opacity duration-300 ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`}
-            alt="Alt"
-          />
+          <article className='mx-3 sm:mx-4 mt-2'>
+            {hashtags && <BlogHashtags hashtags={hashtags} />}
+            <BlogInfo title={blogTitle} text={text} />
+          </article>
+        </Link>
+      ) : (
+        <span
+          className='cursor-pointer'
+          onClick={() => {
+            toast.dismiss()
+            toast.error('Вы не авторизованы, авторизуйтесь чтобы открыть блог!')
+          }}
+        >
+          <CardImage image={blogImage} />
 
-          {!isImageLoaded && (
-            <div className="absolute inset-0 bg-neutral-300 animate-pulse"></div>
-          )}
-        </figure>
-
-        <article className='mx-3 sm:mx-4 mt-2'>
-          {hashtags && <BlogHashtags hashtags={hashtags} />}
-          <BlogInfo title={blogTitle} text={text} />
-        </article>
-
-      </Link>
+          <article className='mx-3 sm:mx-4 mt-2'>
+            {hashtags && <BlogHashtags hashtags={hashtags} />}
+            <BlogInfo title={blogTitle} text={text} />
+          </article>
+        </span>
+      )}
 
       <menu className='relative h-max mx-1 sm:mx-2 my-2 leading-none z-10'>
         <ul className='flex gap-2'>
@@ -162,17 +150,17 @@ export const BlogCard = ({
               handleClick={() =>
                 isAuth
                   ? openModal(
-                    <BlogCommentsModal
-                      setCommentCount={setCommCount}
-                      blogId={blogId}
-                      from={userId}
-                      limit={'10'}
-                      page={'1'}
-                    />
-                  )
+                      <BlogCommentsModal
+                        setCommentCount={setCommCount}
+                        blogId={blogId}
+                        from={userId}
+                        limit={'10'}
+                        page={'1'}
+                      />
+                    )
                   : toast.error(
-                    'Вы не авторизованы, нельзя писать комментарий!'
-                  )
+                      'Вы не авторизованы, нельзя писать комментарий!'
+                    )
               }
               type='comment'
               counter

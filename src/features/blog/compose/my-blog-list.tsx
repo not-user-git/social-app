@@ -7,12 +7,12 @@ import { useMyBlogs } from '../model'
 
 export const MyBlogList = () => {
   const { data, isFetching } = useMyBlogs()
-  
+
   return (
     <div
       className={twMerge(
-        'w-full min-h-0 flex-1 mb-3 overflow-y-scroll',
-        !data?.length && 'flex justify-center items-center px-4 text-center'
+        'w-full min-h-0 flex-1 overflow-y-scroll',
+        !data?.length && 'flex justify-center items-center text-center'
       )}
     >
       {isFetching

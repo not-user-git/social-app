@@ -1,9 +1,10 @@
 import type { ControllerRenderProps } from 'react-hook-form'
+import type { User } from '@/shared/model/types'
 import { useRef, useState } from 'react'
 
 interface Props {
   label: string
-  field: ControllerRenderProps<any, any>
+  field: ControllerRenderProps<User, 'avatar'>
   error?: string
 }
 

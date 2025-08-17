@@ -9,6 +9,7 @@ export const BlogImage = ({ images }: { images: string[] }) => {
         style={{ backgroundImage: `url(${encodeURI(prependUrl(images[0]))})` }}
       >
         <img
+          draggable={false}
           src={prependUrl(images[0])}
           alt={images[0]}
           className='object-cover z-10 h-full'

@@ -38,7 +38,7 @@ export const AccountForm = () => {
         login: user.login,
         phone: user.phone
       })
-  }, [isAuth])
+  }, [isAuth, reset, user])
 
   const onSubmit = (data: User) => {
     edit(data)
@@ -47,7 +47,7 @@ export const AccountForm = () => {
 
   return (
     <form
-      className='flex flex-col gap-5 w-full sm:w-1/2 sm:pl-4'
+      className='flex flex-col gap-5 w-full sm:w-1/2'
       onSubmit={handleSubmit(onSubmit)}
     >
       <Controller

@@ -45,7 +45,7 @@ export const Button = ({
               : '*:text-neutral-500 not-hover:active:bg-primary/10 not-hover:active:*:text-primary hover:bg-primary/10 hover:*:text-primary border-transparent',
 
             active &&
-            'bg-beta/10 text-beta *:text-beta *:underline hover:bg-beta/10 hover:*:text-beta not-hover:active:*:text-beta not-hover:active:bg-beta/10'
+              'bg-beta/10 text-beta *:text-beta *:underline hover:bg-beta/10 hover:*:text-beta not-hover:active:*:text-beta not-hover:active:bg-beta/10'
           )}
         >
           <span
@@ -55,7 +55,7 @@ export const Button = ({
             )}
           >
             {Icon && <Icon className='size-5' />}
-            {children}
+            {!mobileMode && children}
           </span>
         </button>
       </Link>
@@ -79,7 +79,7 @@ export const Button = ({
         )}
       >
         {Icon && <Icon className='size-5' />}
-        {children}
+        {!mobileMode && children}
       </span>
     </button>
   )

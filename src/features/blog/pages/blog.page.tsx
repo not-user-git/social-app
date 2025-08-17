@@ -10,7 +10,9 @@ import { BlogHashtags } from '../ui/blog-hashtags'
 const BlogPage = () => {
   const { id } = useParams()
   const { data: blog, isFetching } = useBlog(id ?? '')
-  useDocumentTitle(blog ? blog.title : 'Blog')
+
+  useDocumentTitle(blog?.title)
+
   const { text, hashtags } = useParsedBlogContent(blog?.text || '')
 
   return (

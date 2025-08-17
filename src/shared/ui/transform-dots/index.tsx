@@ -1,6 +1,6 @@
-import './animate.css'
+import './transform-dots.css'
 
-export const MainLoader = () => {
+export const TransformDots = () => {
   return (
     <div className='size-20 text-primary'>
       <svg

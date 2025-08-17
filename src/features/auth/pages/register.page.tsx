@@ -1,11 +1,14 @@
 import { Link } from 'react-router'
+
 import { useDocumentTitle } from '@/shared/hooks/use-document-title'
 import { ROUTES } from '@/shared/model/routes'
+
 import { AuthLayout } from '../auth-layout'
 import { RegisterForm } from '../compose/register-form'
 
 const RegisterPage = () => {
-  useDocumentTitle('register')
+  useDocumentTitle('Регистрация')
+
   return (
     <AuthLayout>
       <section className='w-full sm:w-100 h-max flex flex-col gap-5 p-4 border-2 border-border rounded-lg'>

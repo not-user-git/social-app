@@ -1,19 +1,16 @@
 import { Plus } from 'lucide-react'
 
 import { useModal } from '@/shared/stores/modal.store'
-import { useDocumentTitle } from '@/shared/hooks/use-document-title'
 
 import { MyBlogList } from '../compose/my-blog-list'
 import { BlogCreateModal } from '../modal/blog-create-modal'
 
 const MyBlogsPage = () => {
-  useDocumentTitle('my blogs')
-
   const openModal = useModal(state => state.openModal)
 
   return (
-    <div className='w-full flex-1 flex flex-col'>
-      <section className='flex justify-between pl-4.5 py-4'>
+    <div className='w-full flex-1 flex flex-col gap-3 px-3 pb-3 sm:pr-0'>
+      <section className='flex justify-between'>
         <h3 className='text-xl text-neutral-900 font-semibold leading-normal'>
           Ваши блоги
         </h3>

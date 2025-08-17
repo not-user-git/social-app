@@ -1,4 +1,4 @@
-import type { LucideIcon } from "lucide-react"
+import type { LucideIcon } from 'lucide-react'
 import { AlignJustify, CircleUserRound, Home } from 'lucide-react'
 import { ROUTES } from '@/shared/model/routes'
 

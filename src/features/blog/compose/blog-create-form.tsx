@@ -5,11 +5,11 @@ import { useForm, Controller } from 'react-hook-form'
 import { ImageOff } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'
 
-import { useCreateBlog, useEditBlog } from '../model'
+import { useCreateBlog, useEditBlog, useFormData } from '../model'
 
 interface Props {
   _id?: string
-  editMode?: boolean
+  editMode: boolean
   title?: string
   text?: string
   prevImage?: string
@@ -22,8 +22,12 @@ export const BlogCreateForm = ({
   text,
   prevImage = ''
 }: Props) => {
+  const inputRef = useRef<HTMLInputElement>(null)
+  const createFormData = useFormData()
+
   const { mutate: postBlog } = useCreateBlog()
   const { mutate: editBlog } = useEditBlog()
+
   const {
     control,
     register,
@@ -32,7 +36,6 @@ export const BlogCreateForm = ({
     formState: { errors },
     reset
   } = useForm<BlogUpload>({ mode: 'onChange' })
-  const inputRef = useRef<HTMLInputElement>(null)
 
   const file = watch('image')
   const [preview, setPreview] = useState<string>()
@@ -57,11 +60,7 @@ export const BlogCreateForm = ({
   }, [file])
 
   const onSubmit = (data: BlogUpload) => {
-    const formData = new FormData()
-    formData.append('title', data.title)
-    formData.append('text', data.text)
-    formData.append('image', data.image || prevImage)
-    if (editMode) formData.append('_id', _id)
+    const formData = createFormData({ data, prevImage, _id, editMode })
 
     if (editMode) editBlog(formData)
     else postBlog(formData)
@@ -172,6 +171,7 @@ export const BlogCreateForm = ({
       <div className='flex gap-3 overflow-x-auto scrollbar-hidden'>
         {preview ? (
           <img
+            draggable={false}
             src={preview}
             className='w-[90px] h-[110px] object-cover rounded border border-neutral-800'
             alt={`preview-${preview}`}

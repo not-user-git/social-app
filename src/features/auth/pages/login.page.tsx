@@ -1,11 +1,14 @@
 import { Link } from 'react-router'
+
 import { useDocumentTitle } from '@/shared/hooks/use-document-title'
 import { ROUTES } from '@/shared/model/routes'
+
 import { AuthLayout } from '../auth-layout'
 import { LoginForm } from '../compose/login-form'
 
 const LoginPage = () => {
-  useDocumentTitle('login')
+  useDocumentTitle('Логин')
+
   return (
     <AuthLayout>
       <section className='w-max sm:w-100 h-max flex flex-col gap-5 p-4 border-2 border-border rounded-lg'>

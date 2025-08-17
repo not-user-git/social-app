@@ -8,9 +8,7 @@ import { useUser } from '@/shared/stores/auth.store'
 import { twMerge } from 'tailwind-merge'
 
 const NotComments = () => {
-  return (
-    <span>Нет комментарий, оставьте первый</span>
-  )
+  return <span>Нет комментарий, оставьте первый</span>
 }
 
 export const BlogCommentsModal = ({
@@ -25,7 +23,7 @@ export const BlogCommentsModal = ({
 
   useEffect(() => {
     setCommentCount(data ? data.length : 0)
-  }, [data])
+  }, [setCommentCount, data])
 
   return (
     <section className='w-[320px] sm:w-[450px]'>
@@ -35,26 +33,25 @@ export const BlogCommentsModal = ({
           !data?.length && 'items-center justify-center'
         )}
       >
-
-        {
-          data?.length
-            ? (data ? (
-              data.map(comment => (
-                <BlogComment
-                  key={comment._id}
-                  blogId={blogId}
-                  id={comment._id}
-                  my={userId === comment.from}
-                  updated={comment.updatedAt}
-                  created={comment.createdAt ? comment.createdAt : ''}
-                  text={comment.text}
-                />
-              ))
-            ) : (
-              <span className='text-neutral-800'>Загрузка...</span>
+        {data?.length ? (
+          data ? (
+            data.map(comment => (
+              <BlogComment
+                key={comment._id}
+                blogId={blogId}
+                id={comment._id}
+                my={userId === comment.from}
+                updated={comment.updatedAt}
+                created={comment.createdAt ? comment.createdAt : ''}
+                text={comment.text}
+              />
             ))
-            : (<NotComments />)
-        }
+          ) : (
+            <span className='text-neutral-800'>Загрузка...</span>
+          )
+        ) : (
+          <NotComments />
+        )}
       </div>
       <CommentForm blogId={blogId} from={from} to={blogId} />
     </section>

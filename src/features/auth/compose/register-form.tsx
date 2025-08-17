@@ -32,7 +32,7 @@ export const RegisterForm = () => {
 
   const avatar = watch('avatar')?.[0]
   const avatarPreview =
-    avatar && typeof avatar === 'object' && (avatar as any) instanceof Blob
+    avatar && typeof avatar === 'object' && avatar
       ? URL.createObjectURL(avatar)
       : null
 
@@ -42,10 +42,7 @@ export const RegisterForm = () => {
   }
 
   return (
-    <form
-      className='flex flex-col gap-3'
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className='flex flex-col gap-3' onSubmit={handleSubmit(onSubmit)}>
       <Controller
         name='login'
         control={control}
@@ -211,9 +208,7 @@ export const RegisterForm = () => {
 
       <AvatarPreview avatar={avatarPreview} />
 
-      <Button>
-        Зарегистрироваться
-      </Button>
+      <Button>Зарегистрироваться</Button>
     </form>
   )
 }

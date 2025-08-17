@@ -11,9 +11,10 @@ export const BlogList = () => {
 
   return (
     <div className='flex-1 overflow-y-scroll min-h-0 py-3 sm:py-0'>
-      {isFetching
-        ? <BlogCardSkeleton />
-        : data?.map(blog => (
+      {isFetching ? (
+        <BlogCardSkeleton />
+      ) : (
+        data?.map(blog => (
           <BlogCard
             key={blog._id}
             blogId={blog._id}
@@ -28,7 +29,8 @@ export const BlogList = () => {
             likeCount={blog.likeCount}
             commentCount={blog.commentCount}
           />
-        ))}
+        ))
+      )}
     </div>
   )
 }
