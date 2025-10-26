@@ -1,7 +1,8 @@
+import type { Blogs, Blog, Like, Comments, Comment } from './types'
+
 import { axiosPublic } from '@/shared/lib/axios/axios-public'
 import { axiosPrivate } from '@/shared/lib/axios/axios-private'
 import { ENDPOINTS } from '@/shared/model/endpoints'
-import type { Blogs, Blog, Like, Comments, Comment } from './types'
 
 export const getBlogs = async () => {
   const res = await axiosPublic.get<Blogs>(ENDPOINTS.BLOG.ALL)
