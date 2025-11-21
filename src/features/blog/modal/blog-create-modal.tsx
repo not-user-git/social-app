@@ -2,7 +2,7 @@ import { BlogCreateForm } from '../compose/blog-create-form'
 
 interface Props {
   id?: string
-  editMode?: boolean
+  editMode: boolean
   title?: string
   text?: string
   prevImage?: string

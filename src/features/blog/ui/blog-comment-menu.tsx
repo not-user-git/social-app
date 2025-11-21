@@ -4,7 +4,7 @@ import { Pen, Trash } from 'lucide-react'
 
 interface Props {
   text?: string | null
-  id?: string
+  id?: string | null
   onDelete: UseMutateFunction<any, Error, string, unknown>
   onEditMode: (value: string | null) => void
   cancelEditMode: () => void
@@ -28,7 +28,7 @@ export const BlogCommentMenu = ({
   }
 
   const handleDelete = () => {
-    onDelete(id)
+    onDelete(id ?? '')
     cancelEditMode()
   }
 

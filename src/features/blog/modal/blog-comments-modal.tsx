@@ -1,15 +1,13 @@
 import type { Dispatch, SetStateAction } from 'react'
 import type { Comments } from '../model/types'
 import { useEffect } from 'react'
-import { useComments } from '../model'
-import { CommentForm } from '../compose/comment-form'
-import { BlogComment } from '../compose/blog-comment'
-import { useUser } from '@/shared/stores/auth.store'
 import { twMerge } from 'tailwind-merge'
 
-const NotComments = () => {
-  return <span>Нет комментарий, оставьте первый</span>
-}
+import { useUser } from '@/shared/stores/auth.store'
+import { useComments } from '../model'
+
+import { CommentForm } from '../compose/comment-form'
+import { BlogComment } from '../compose/blog-comment'
 
 export const BlogCommentsModal = ({
   blogId,
@@ -22,7 +20,7 @@ export const BlogCommentsModal = ({
   const userId = useUser(state => state.user._id)
 
   useEffect(() => {
-    setCommentCount(data ? data.length : 0)
+    setCommentCount(data?.length ?? 0)
   }, [setCommentCount, data])
 
   return (
@@ -50,7 +48,7 @@ export const BlogCommentsModal = ({
             <span className='text-neutral-800'>Загрузка...</span>
           )
         ) : (
-          <NotComments />
+          <span>Нет комментарий, оставьте первый</span>
         )}
       </div>
       <CommentForm blogId={blogId} from={from} to={blogId} />

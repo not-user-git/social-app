@@ -1,4 +1,5 @@
 import type { User } from '@/shared/model/types'
+
 import { useForm, Controller } from 'react-hook-form'
 
 import { useRegister, RULES } from '../model'
@@ -33,86 +34,54 @@ export const RegisterForm = () => {
     reset()
   }
 
+  const INPUTS = [
+    {
+      error: errors.login,
+      maxLength: 16,
+      type: 'login',
+      label: 'Логин',
+      placeholder: 'example1234'
+    },
+    {
+      error: errors.password,
+      maxLength: 14,
+      type: 'password',
+      label: 'Пароль',
+      placeholder: '********'
+    },
+    {
+      error: errors.email,
+      type: 'email',
+      label: 'Email',
+      placeholder: 'example@mail.com'
+    },
+    {
+      error: errors.name,
+      type: 'name',
+      label: 'Имя',
+      placeholder: 'John'
+    },
+    {
+      error: errors.lname,
+      type: 'lname',
+      label: 'Фамилия',
+      placeholder: 'Doe'
+    }
+  ]
+
   return (
     <form className='flex flex-col gap-3' onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name='login'
-        control={control}
-        rules={RULES.LOGIN}
-        render={({ field }) => (
-          <Input
-            error={errors.login}
-            maxLength={16}
-            type='login'
-            label='Логин'
-            placeholder='example1234'
-            field={field}
-          />
-        )}
-      />
-
-      <Controller
-        name='password'
-        control={control}
-        rules={RULES.PASSWORD}
-        render={({ field }) => (
-          <Input
-            error={errors.password}
-            maxLength={14}
-            type='password'
-            label='Пароль'
-            placeholder='********'
-            field={field}
-          />
-        )}
-      />
-
-      <Controller
-        name='email'
-        control={control}
-        rules={RULES.EMAIL}
-        render={({ field }) => (
-          <Input
-            field={field}
-            label='Email'
-            type='email'
-            placeholder='example@mail.com'
-            error={errors.email}
-          />
-        )}
-      />
-
-      <Controller
-        name='name'
-        control={control}
-        rules={RULES.NAME}
-        render={({ field }) => (
-          <Input
-            field={field}
-            maxLength={18}
-            label='Имя'
-            type='name'
-            placeholder='John'
-            error={errors.name}
-          />
-        )}
-      />
-
-      <Controller
-        name='lname'
-        control={control}
-        rules={RULES.LNAME}
-        render={({ field }) => (
-          <Input
-            field={field}
-            maxLength={20}
-            label='Фамилия'
-            type='lname'
-            placeholder='Doe'
-            error={errors.lname}
-          />
-        )}
-      />
+      {INPUTS.map((input, index) => (
+        <Input
+          key={index}
+          controller={control}
+          error={input.error}
+          maxLength={input.maxLength}
+          type={input.type}
+          label={input.label}
+          placeholder={input.placeholder}
+        />
+      ))}
 
       <Controller
         name='phone'

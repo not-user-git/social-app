@@ -1,27 +1,28 @@
+import type { User } from '@/shared/model/types'
 import type {
-  ControllerRenderProps,
   FieldError,
   FieldErrorsImpl,
-  Merge
+  Merge,
+  Control
 } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 
-interface Props {
+export interface Props {
+  controller: Control<User>
   label: string
-  field: ControllerRenderProps<any, any>
   error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>
-  placeholder: string
+  placeholder?: string
   maxLength?: number
-  type: 'login' | 'password' | 'email' | 'name' | 'lname' | 'tel' | 'avatar'
+  type: string
 }
 
 export const Input = ({
   label,
-  field,
   error,
   placeholder,
   maxLength,
-  type
+  type,
+  ...props
 }: Props) => {
   return (
     <div className='flex flex-col gap-2'>
@@ -30,7 +31,7 @@ export const Input = ({
       </label>
 
       <input
-        {...field}
+        {...props}
         id={type}
         autoComplete='off'
         spellCheck={false}

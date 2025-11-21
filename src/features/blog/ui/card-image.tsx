@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useState } from 'react'
 
 interface Props {
   image: string
@@ -6,22 +6,6 @@ interface Props {
 
 export const CardImage = ({ image }: Props) => {
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false)
-  const imageElement = useRef<HTMLImageElement>(null)
-
-  const handleLoad = () => {
-    setIsImageLoaded(true)
-  }
-
-  useEffect(() => {
-    const img = imageElement.current
-    if (!img) return
-
-    img.addEventListener('load', handleLoad)
-
-    return () => {
-      img.removeEventListener('load', handleLoad)
-    }
-  }, [image, imageElement])
 
   return (
     <figure
@@ -29,7 +13,6 @@ export const CardImage = ({ image }: Props) => {
     >
       <img
         draggable={false}
-        ref={imageElement}
         src={image}
         onLoad={() => setIsImageLoaded(true)}
         onError={() => console.error('Ошибка загрузки')}

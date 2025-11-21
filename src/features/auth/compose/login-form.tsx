@@ -1,4 +1,4 @@
-import type { UserLogin } from '../model/types'
+import type { UserLogin } from '../model/interfaces'
 import { useForm, Controller } from 'react-hook-form'
 
 import { useLogin, RULES } from '../model'

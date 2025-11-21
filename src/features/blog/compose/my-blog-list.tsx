@@ -33,7 +33,7 @@ export const MyBlogList = () => {
               commentCount={blog.commentCount}
             />
           ))}
-      {data?.length === 0 && (
+      {!data?.length && (
         <span className='text-neutral-800 text-lg'>
           У вас нет блогов, можете создать первый свой блог прямо сейчас!
         </span>

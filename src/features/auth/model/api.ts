@@ -1,7 +1,7 @@
 import { axiosPublic } from '@/shared/lib/axios/axios-public'
 import { axiosPrivate } from '@/shared/lib/axios/axios-private'
 import { ENDPOINTS } from '@/shared/model/endpoints'
-import type { UserLogin } from './types'
+import type { UserLogin } from './interfaces'
 import type { User } from '@/shared/model/types'
 
 export const register = async (data: User) => {

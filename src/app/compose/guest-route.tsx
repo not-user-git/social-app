@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import { useNavigate } from 'react-router'
 
 import { useUser } from '@/shared/stores/auth.store'
@@ -9,7 +9,7 @@ export const GuestRoute = ({ children }: { children: ReactNode }) => {
   const isAuth = useUser(state => state.isAuth)
   const navigate = useNavigate()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isAuth) {
       navigate(ROUTES.HOME, { replace: true })
     }

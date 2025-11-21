@@ -28,7 +28,11 @@ export const BlogComment = ({
   const setId = useCommentStore(state => state.setId)
   const editMode = useCommentStore(state => state.editMode)
   const cancelEditMode = useCommentStore(state => state.cancelEditMode)
+
   const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  const isUpdated = updated !== created
+
   return (
     <section
       className={twMerge(
@@ -46,7 +50,7 @@ export const BlogComment = ({
           </button>
           {isOpen && (
             <BlogCommentMenu
-              id={id ?? ''}
+              id={id}
               cancelEditMode={cancelEditMode}
               setId={setId}
               onDelete={deleteComment}
@@ -72,12 +76,10 @@ export const BlogComment = ({
           )}
         >
           <span className={twMerge('text-[12px]', my ? 'order-2' : 'order-1')}>
-            {updated !== created
-              ? toDefaultDate(updated ?? '')
-              : toDefaultDate(created)}
+            {isUpdated ? toDefaultDate(updated ?? '') : toDefaultDate(created)}
           </span>
 
-          {updated !== created && (
+          {isUpdated && (
             <Pen className={twMerge('size-2.5', my ? 'order-1' : 'order-2')} />
           )}
         </span>
